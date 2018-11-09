@@ -50,7 +50,7 @@ window.function = getTemperature = () => {
                 if(json.temperature === "") {
                     document.getElementById("tempNumber").innerText = "-Fehler-";
                 } else {
-                    document.getElementById("tempNumber").innerText = json.temperature + " °C";
+                    document.getElementById("tempNumber").innerText = Math.round(json.temperature * 10) / 10 + " °C";
                 }
             })
             .catch(err => {});
