@@ -47,13 +47,13 @@ class HomeController extends Controller
 
         copy(env("MUSIC_PATH")."/".$file, "/tmp/music/music.".pathinfo(env("MUSIC_PATH")."/".$file, PATHINFO_EXTENSION));
 
-        foreach (array_filter(glob("/tmp/music/*"), 'is_file') as $file)
+        foreach (array_filter(glob("/tmp/music/*"), 'is_file') as $musicFile)
         {
-            echo $file;
+            echo $musicFile;
             system("omxplayer --vol -2000 ".$file." > /dev/null &");
         }
 
-        DB::insert("INSERT INTO playedmusic (track_played) VALUES (?)", [$file]);
+        DB::insert("INSERT INTO playedmusic (track_played) VALUES (?)", [basename($file)]);
         return $file;
     }
 }
