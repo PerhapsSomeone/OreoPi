@@ -45,7 +45,7 @@ class HomeController extends Controller
         rmdir("/tmp/music");
         mkdir("/tmp/music");
 
-        copy(env("MUSIC_PATH")."/".$file, "/tmp/music/.".$file.pathinfo(env("MUSIC_PATH")."/".$file, PATHINFO_EXTENSION));
+        copy(env("MUSIC_PATH")."/".$file, "/tmp/music/music.".pathinfo(env("MUSIC_PATH")."/".$file, PATHINFO_EXTENSION));
 
         foreach (array_filter(glob("/tmp/music/*"), 'is_file') as $file)
         {
