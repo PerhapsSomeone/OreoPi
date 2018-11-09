@@ -26,7 +26,15 @@ Auth::routes(['register' => false]);
 Route::get('/home', 'HomeController@home')->name('home');
 
 Auth::routes(['register' => false]);
-Route::get('/api/temperature', 'HomeController@curtemp')->name('current_temp');
+Route::get('/api/temperature', 'HomeController@curtemp')->name('api_current_temp');
 
 Auth::routes(['register' => false]);
-Route::get('/api/nowplaying', 'HomeController@nowplaying')->name('now_playing');
+Route::get('/api/nowplaying', 'HomeController@nowplaying')->name('api_now_playing');
+
+Auth::routes(['register' => false]);
+Route::get('/api/playsong/{file}', 'HomeController@playsong')->name('play_song');
+
+Auth::routes(['register' => false]);
+Route::get('/api/stop_playing', function () {
+    system("killall -9 omxplayer.bin");
+})->name('api_now_playing');

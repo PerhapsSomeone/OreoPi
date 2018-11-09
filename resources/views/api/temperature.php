@@ -15,7 +15,7 @@ if($temperature == []) {
     );
 } else {
     $arr = array(
-        "temperature" => $temperature,
+        "temperature" => $temperature[0],
         "success" => true
     );
 }
