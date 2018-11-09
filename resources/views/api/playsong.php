@@ -8,4 +8,4 @@ $file = env("MUSIC_PATH")."/".Input::get('file');
 
 system("nohup omxplayer --vol -2000 ".$file." &");
 
-DB::insert("INSERT INTO playedmusic (track_played) VALUE ?", [$file]);
+DB::insert("INSERT INTO playedmusic (track_played) VALUES (?)", [$file]);

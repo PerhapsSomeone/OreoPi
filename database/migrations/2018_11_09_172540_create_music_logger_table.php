@@ -14,7 +14,7 @@ class CreateMusicLoggerTable extends Migration
     public function up()
     {
         Schema::create('playedmusic', function (Blueprint $table) {
-            $table->integer('number')->index();
+            $table->increments('number');
             $table->string('track_played');
             $table->timestamp('played_at')->nullable();
         });
