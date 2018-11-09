@@ -32,7 +32,7 @@ Auth::routes(['register' => false]);
 Route::get('/api/nowplaying', 'HomeController@nowplaying')->name('api_now_playing');
 
 Auth::routes(['register' => false]);
-Route::get('/api/playsong/{file}', 'HomeController@playsong')->name('play_song');
+Route::get('/api/playsong/{file?}', 'HomeController@playsong')->name('play_song');
 
 Auth::routes(['register' => false]);
 Route::get('/api/stop_playing', function () {

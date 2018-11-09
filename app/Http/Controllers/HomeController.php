@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
+
 class HomeController extends Controller
 {
     /**
@@ -36,7 +39,11 @@ class HomeController extends Controller
         return view("api.nowplaying");
     }
 
-    public function playsong() {
-        return view("api.playsong");
+    public function playsong($file = null) {
+        $file = env("MUSIC_PATH")."/".$file;
+        system("omxplayer --vol -2000 ".$file." > /dev/null &");
+
+        DB::insert("INSERT INTO playedmusic (track_played) VALUES (?)", [$file]);
+        return $file;
     }
 }
