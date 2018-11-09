@@ -31,9 +31,4 @@
             </div>
         </div>
     </div>
-
-    <script>
-        nowPlayingCheck();
-        setInterval(nowPlayingCheck(), 3000);
-    </script>
 @endsection

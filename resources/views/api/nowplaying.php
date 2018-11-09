@@ -12,7 +12,7 @@ if($playerProcessActive == 0) {
     $lastPlayed = json_decode(json_encode(DB::select("SELECT * FROM playedmusic ORDER BY number DESC LIMIT 1")), true);
     if ($lastPlayed !== []) {
         echo json_encode(array(
-            "nowplaying" => $lastPlayed["track_played"]
+            "nowplaying" => $lastPlayed[0]["track_played"]
         ));
     }
 }
