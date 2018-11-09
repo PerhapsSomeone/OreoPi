@@ -13922,8 +13922,23 @@ Vue.component('example-component', __webpack_require__(39));
  */
 
 var app = new Vue({
-  el: '#app'
+    el: '#app'
 });
+
+window.function = nowPlayingCheck = function nowPlayingCheck() {
+    fetch("/api/nowplaying").then(function (res) {
+        return res.json();
+    }).then(function (json) {
+        if (json.nowplaying === undefined) {
+            console.log("Detected no song playing");
+        } else {
+            console.log("Detected " + json.nowplaying + " playing.");
+            document.getElementById("musicNowPlayingTitle").innerText = json.nowplaying;
+        }
+    }).catch(function (err) {
+        throw err;
+    });
+};
 
 /***/ }),
 /* 13 */

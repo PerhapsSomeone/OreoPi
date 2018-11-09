@@ -34,3 +34,17 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 const app = new Vue({
     el: '#app'
 });
+
+window.function = nowPlayingCheck = () => {
+    fetch("/api/nowplaying")
+        .then(res => res.json())
+        .then((json) => {
+            if(json.nowplaying === undefined) {
+                console.log("Detected no song playing");
+            } else {
+                console.log("Detected " + json.nowplaying + " playing.");
+                document.getElementById("musicNowPlayingTitle").innerText = json.nowplaying;
+            }
+        })
+        .catch(err => { throw err });
+};

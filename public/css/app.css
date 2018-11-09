@@ -10480,3 +10480,12 @@ a.text-dark:focus {
   margin-top: 40px;
 }
 
+.centered-box {
+  text-align: center;
+}
+
+.musicBox {
+  background: turquoise;
+  color: gray;
+}
+

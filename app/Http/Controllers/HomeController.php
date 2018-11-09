@@ -33,4 +33,8 @@ class HomeController extends Controller
     public function curtemp() {
         return view("api.temperature");
     }
+
+    public function nowplaying() {
+        return view("api.nowplaying");
+    }
 }

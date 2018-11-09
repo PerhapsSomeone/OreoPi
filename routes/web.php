@@ -27,3 +27,6 @@ Route::get('/home', 'HomeController@home')->name('home');
 
 Auth::routes(['register' => false]);
 Route::get('/api/temperature', 'HomeController@curtemp')->name('current_temp');
+
+Auth::routes(['register' => false]);
+Route::get('/api/nowplaying', 'HomeController@nowplaying')->name('now_playing');
