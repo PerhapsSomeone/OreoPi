@@ -40,8 +40,7 @@ class HomeController extends Controller
     }
 
     public function playsong($file = null) {
-        $file = env("MUSIC_PATH")."/".$file;
-        system("omxplayer --vol -2000 ".$file." > /dev/null &");
+        system("cd ".env("MUSIC_PATH")." && omxplayer --vol -2000 ".$file." > /dev/null &");
 
         DB::insert("INSERT INTO playedmusic (track_played) VALUES (?)", [$file]);
         return $file;
