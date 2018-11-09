@@ -50,7 +50,7 @@ class HomeController extends Controller
         foreach (array_filter(glob("/tmp/music/*"), 'is_file') as $musicFile)
         {
             echo $musicFile;
-            system("omxplayer --vol -2000 ".$file." > /dev/null &");
+            system("omxplayer --vol -2000 ".$musicFile." > /dev/null &");
         }
 
         DB::insert("INSERT INTO playedmusic (track_played) VALUES (?)", [basename($file)]);
