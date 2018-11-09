@@ -41,10 +41,19 @@ window.function = nowPlayingCheck = () => {
         .then((json) => {
             if(json.nowplaying === undefined) {
                 console.log("Detected no song playing");
+                document.getElementById("musicNowPlayingTitle").innerText = "Nothing playing";
             } else {
                 console.log("Detected " + json.nowplaying + " playing.");
                 document.getElementById("musicNowPlayingTitle").innerText = json.nowplaying;
             }
         })
         .catch(err => { throw err });
+};
+
+window.function = playMusic = (id) => {
+    fetch("/api/playsong/" + document.getElementById("song" + id).innerText);
+};
+
+window.function = stopPlaying = (id) => {
+    fetch("/api/stop_playing");
 };

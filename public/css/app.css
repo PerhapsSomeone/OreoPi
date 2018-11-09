@@ -10489,3 +10489,8 @@ a.text-dark:focus {
   color: gray;
 }
 
+.musicPlayButton {
+  text-align: right;
+  float: right;
+}
+

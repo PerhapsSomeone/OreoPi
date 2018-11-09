@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class HomeController extends Controller
 {
     /**
@@ -36,5 +34,9 @@ class HomeController extends Controller
 
     public function nowplaying() {
         return view("api.nowplaying");
+    }
+
+    public function playsong() {
+        return view("api.playsong");
     }
 }

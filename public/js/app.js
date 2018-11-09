@@ -13931,6 +13931,7 @@ window.function = nowPlayingCheck = function nowPlayingCheck() {
     }).then(function (json) {
         if (json.nowplaying === undefined) {
             console.log("Detected no song playing");
+            document.getElementById("musicNowPlayingTitle").innerText = "Nothing playing";
         } else {
             console.log("Detected " + json.nowplaying + " playing.");
             document.getElementById("musicNowPlayingTitle").innerText = json.nowplaying;
@@ -13938,6 +13939,14 @@ window.function = nowPlayingCheck = function nowPlayingCheck() {
     }).catch(function (err) {
         throw err;
     });
+};
+
+window.function = playMusic = function playMusic(id) {
+    fetch("/api/playsong/" + document.getElementById("song" + id).innerText);
+};
+
+window.function = stopPlaying = function stopPlaying(id) {
+    fetch("/api/stop_playing");
 };
 
 /***/ }),
