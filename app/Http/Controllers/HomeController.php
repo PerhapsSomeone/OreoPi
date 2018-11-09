@@ -40,9 +40,14 @@ class HomeController extends Controller
     }
 
     public function playsong($file = null) {
-        copy(env("MUSIC_PATH")."/".$file, "/tmp/music.".pathinfo(env("MUSIC_PATH")."/".$file, PATHINFO_EXTENSION));
+        error_reporting(E_ALL ^ E_WARNING);
 
-        foreach (array_filter(glob(env("MUSIC_PATH")."/music*"), 'is_file') as $file)
+        rmdir("/tmp/music");
+        mkdir("/tmp/music");
+
+        copy(env("MUSIC_PATH")."/".$file, "/tmp/music/.".pathinfo(env("MUSIC_PATH")."/".$file, PATHINFO_EXTENSION));
+
+        foreach (array_filter(glob("/tmp/music/*"), 'is_file') as $file)
         {
             echo $file;
             system("omxplayer --vol -2000 ".$file." > /dev/null &");
