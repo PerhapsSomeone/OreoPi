@@ -32,14 +32,20 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
  */
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
 });
+
+window.function = setupPlayingIndicator = () => {
+  setInterval(() => {
+      nowPlayingCheck();
+  }, 2000);
+};
 
 window.function = nowPlayingCheck = () => {
     fetch("/api/nowplaying")
         .then(res => res.json())
         .then((json) => {
-            if(json.nowplaying === undefined) {
+            if(json.nowplaying === "undefined") {
                 console.log("Detected no song playing");
                 document.getElementById("musicNowPlayingTitle").innerText = "Nothing playing";
             } else {
@@ -57,3 +63,7 @@ window.function = playMusic = (id) => {
 window.function = stopPlaying = (id) => {
     fetch("/api/stop_playing");
 };
+
+window.addEventListener('load', function() {
+    setupPlayingIndicator();
+})

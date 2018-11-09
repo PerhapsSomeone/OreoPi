@@ -13925,11 +13925,17 @@ var app = new Vue({
     el: '#app'
 });
 
+window.function = setupPlayingIndicator = function setupPlayingIndicator() {
+    setInterval(function () {
+        nowPlayingCheck();
+    }, 2000);
+};
+
 window.function = nowPlayingCheck = function nowPlayingCheck() {
     fetch("/api/nowplaying").then(function (res) {
         return res.json();
     }).then(function (json) {
-        if (json.nowplaying === undefined) {
+        if (json.nowplaying === "undefined") {
             console.log("Detected no song playing");
             document.getElementById("musicNowPlayingTitle").innerText = "Nothing playing";
         } else {
@@ -13948,6 +13954,10 @@ window.function = playMusic = function playMusic(id) {
 window.function = stopPlaying = function stopPlaying(id) {
     fetch("/api/stop_playing");
 };
+
+window.addEventListener('load', function () {
+    setupPlayingIndicator();
+});
 
 /***/ }),
 /* 13 */

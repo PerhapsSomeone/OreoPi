@@ -3,8 +3,7 @@
 use Illuminate\Support\Facades\DB;
 
 exec("ps cax | grep -c omxplayer.bin", $playerProcessActive);
-
-if($playerProcessActive == "0") {
+if((integer)$playerProcessActive[0] === 0) {
     echo json_encode(array(
         "nowplaying" => "undefined"
     ));
