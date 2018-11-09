@@ -38,26 +38,54 @@ const app = new Vue({
 window.function = setupPlayingIndicator = () => {
   setInterval(() => {
       nowPlayingCheck();
+      getTemperature();
   }, 2000);
 };
 
+window.function = getTemperature = () => {
+    try {
+        fetch("/api/temperature")
+            .then(res => res.json())
+            .then((json) => {
+                if(json.temperature === "") {
+                    document.getElementById("tempNumber").innerText = "-Fehler-";
+                } else {
+                    document.getElementById("tempNumber").innerText = json.temperature + " °C";
+                }
+            })
+            .catch(err => {});
+    } catch (e) {
+
+    }
+};
+
 window.function = nowPlayingCheck = () => {
-    fetch("/api/nowplaying")
-        .then(res => res.json())
-        .then((json) => {
-            if(json.nowplaying === "undefined") {
-                console.log("Detected no song playing");
-                document.getElementById("musicNowPlayingTitle").innerText = "Nothing playing";
-            } else {
-                console.log("Detected " + json.nowplaying + " playing.");
-                document.getElementById("musicNowPlayingTitle").innerText = json.nowplaying;
-            }
-        })
-        .catch(err => { throw err });
+    try {
+        fetch("/api/nowplaying")
+            .then(res => res.json())
+            .then((json) => {
+                if (json.nowplaying === "undefined") {
+                    console.log("Detected no song playing");
+                    document.getElementById("musicNowPlayingTitle").innerText = "Nothing playing";
+                } else {
+                    console.log("Detected " + json.nowplaying + " playing.");
+                    document.getElementById("musicNowPlayingTitle").innerText = json.nowplaying;
+                }
+            })
+            .catch(err => {
+
+            });
+    } catch (e) {
+        
+    }
 };
 
 window.function = playMusic = (id) => {
-    fetch("/api/playsong/" + document.getElementById("song" + id).innerText);
+    try {
+        fetch("/api/playsong/" + document.getElementById("song" + id).innerText);
+    } catch (e) {
+
+    }
 };
 
 window.function = stopPlaying = (id) => {
@@ -66,4 +94,4 @@ window.function = stopPlaying = (id) => {
 
 window.addEventListener('load', function() {
     setupPlayingIndicator();
-})
+});

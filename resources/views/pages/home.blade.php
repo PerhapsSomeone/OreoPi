@@ -24,6 +24,17 @@
 
         <div class="col-md-8 space">
             <div class="card">
+                <div class="card-header">{{ trans("home.onelook") }}</div>
+                <div class="card-body">
+                    <i class="fa fa-thermometer-full fa-fw"></i><span id="tempNumber">Lädt...</span>
+                </div>
+            </div>
+        </div>
+
+        <br /><br />
+
+        <div class="col-md-8 space">
+            <div class="card">
                 <div class="card-header">{{ trans("home.menu") }}</div>
                 <div class="card-body">
                     <div class="container">
