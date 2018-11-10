@@ -1,6 +1,10 @@
 ![OreoPi Logo](https://i.imgur.com/RL5VTuY.png)
 # OreoPi
 
+
+![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/PerhapsSomeone/OreoPi.svg)
+
+
 OreoPi is a project to allow your Pi to be used as a media and weather station. 
 It currently is under active development and sports multiple features.
 A quick list:
